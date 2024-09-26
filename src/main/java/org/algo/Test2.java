@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Test2 {
 
-    public static ArrayList<Integer> sumOfDigits(int number) {
+    public static int sumOfDigits(int number) {
 
         int currentNumber = 0;
 
@@ -15,13 +15,14 @@ public class Test2 {
 
         int remainder = number / 10;
 
-        digits.add(currentNumber);
-        System.out.println(currentNumber);
-        System.out.println(remainder);
-        System.out.println(digits);
+
+        //System.out.println(currentNumber);
+        //System.out.println(remainder);
+        if(!digits.isEmpty())
+            System.out.println(digits.get(digits.size()-1));
 
         while (remainder != 0) {
-
+            digits.add(currentNumber);
             //digits += currentNumber;
             return sumOfDigits(remainder);
         }
@@ -35,8 +36,21 @@ public class Test2 {
 //        digits.forEach(integer -> {
 //            sum += integer
 //        });
-        System.out.println(digits);
-        return digits;
+        //System.out.println(digits);
+
+
+
+//            // Base case: when number reduces to 0, return 0
+//            if (number == 0) {
+//                return 0;
+//            }
+//
+//            // Get the last digit and make a recursive call with the remaining digits
+//            return (number % 10) + sumOfDigits(number / 10);
+
+
+
+        return digits.get(0);
 
     }
 
