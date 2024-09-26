@@ -1,71 +1,59 @@
 package org.algo;
 
-import java.util.ArrayList;
 import java.util.Scanner;
+
+import static java.lang.Thread.*;
 
 public class Test2 {
 
     public static int sumOfDigits(int number) {
 
-        int currentNumber = 0;
-
-        ArrayList<Integer> digits = new ArrayList<>();
-
-        currentNumber = number % 10;
-
-        int remainder = number / 10;
-
-
-        //System.out.println(currentNumber);
-        //System.out.println(remainder);
-        if(!digits.isEmpty())
-            System.out.println(digits.get(digits.size()-1));
-
-        while (remainder != 0) {
-            digits.add(currentNumber);
-            //digits += currentNumber;
-            return sumOfDigits(remainder);
+        // Base case: when number reduces to 0, return 0
+        if (number == 0) {
+            return 0;
         }
 
-        int sum = 0;
-
-        for(int i = 0; i < digits.size(); i++){
-            sum += digits.get(i);
-        }
-
-//        digits.forEach(integer -> {
-//            sum += integer
-//        });
-        //System.out.println(digits);
-
-
-
-//            // Base case: when number reduces to 0, return 0
-//            if (number == 0) {
-//                return 0;
-//            }
-//
-//            // Get the last digit and make a recursive call with the remaining digits
-//            return (number % 10) + sumOfDigits(number / 10);
-
-
-
-        return digits.get(0);
+        // Get the last digit and make a recursive call with the remaining digits
+        return (number % 10) + sumOfDigits(number / 10);
 
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
 
         Scanner s = new Scanner(System.in);
+        String input;
 
-        System.out.println("Enter a single number.");
+        while (true) {
+            System.out.println("Enter a single positive number of any size (or enter any anything else to quit):");
 
-        int input = s.nextInt();
+            input = s.next();  // Read the input as a string
 
-        sumOfDigits(input);
-        //System.out.print(sumOfDigits(1234));
+            // Check if the input is an integer and convert it
+            try {
+
+                int number = Integer.parseInt(input);
+
+                // If the input number is less than 1, exit the loop
+                if (number < 1) {
+
+                    System.out.println("Exiting the program.");
+                    break;
+
+                }
+
+                // Calculate and print the sum of digits
+                System.out.println("The sum of digits is: " + sumOfDigits(number));
+
+            } catch (NumberFormatException e) {
+
+                // Break the loop and exit the program
+                break;
+
+            }
+
+        }
+
+        s.close();  // Close the scanner
 
     }
-
-
 }
