@@ -1,6 +1,7 @@
 package org.algo;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Test2 {
 
@@ -41,8 +42,13 @@ public class Test2 {
 
     public static void main(String[] args){
 
-        ///do i need a scanner
-        sumOfDigits(1234);
+        Scanner s = new Scanner(System.in);
+
+        System.out.println("Enter a single number.");
+
+        int input = s.nextInt();
+
+        sumOfDigits(input);
         //System.out.print(sumOfDigits(1234));
 
     }
